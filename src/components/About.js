@@ -1,32 +1,38 @@
     import React, {useState} from 'react'
-    export default function About() {
-        const [myStyle, setmyStyle] = useState({
-            color:'white',
-            backgroundColor:'black',
-        })
-        let [btnText, setBtnText] = useState('Enable Dark mode');
-        const toggleMode=()=>
-        {
-        if(myStyle.color==='black')
-        {
-            setmyStyle({
-                color:'white',
-                backgroundColor:'black',
-                border: '1px solid white'
-            });
+    export default function About(props) {
+        // const [myStyle, setmyStyle] = useState({
+        //     color:'black',
+        //     backgroundColor:'white',
+        // })
+        let myStyle={
+            color:props.mode=='dark'?'white':'black',
+            backgroundColor:props.mode=='dark'?'#102048':'white',
+            border:'1px solid'
+        }
+        
+        // let [btnText, setBtnText] = useState('Enable Dark mode');
+        // const toggleMode=()=>
+        // {
+        // if(myStyle.color==='black')
+        // {
+        //     setmyStyle({
+        //         color:'white',
+        //         backgroundColor:'black',
+        //         border: '1px solid white'
+        //     });
            
-            btnText='Enable Light mode';
-        }
-        else{
-            setmyStyle({
-                color:'black',
-                backgroundColor:'white',
-            });
-            btnText='Enable Dark mode';
-        }
-        }
+        //     btnText='Enable Light mode';
+        // }
+        // else{
+        //     setmyStyle({
+        //         color:'black',
+        //         backgroundColor:'white',
+        //     });
+        //     btnText='Enable Dark mode';
+        // }
+        // }
         return (
-            <div className="container" style={myStyle}>
+            <div className="container" style={{color:props.mode=='dark'?'white':'black'}}>
                 <h1 className="my-3">About Us</h1>
                 <div className="accordion" id="accordionExample">
         <div className="accordion-item">
@@ -66,9 +72,7 @@
         </div>
     </div>
     </div>
-    <div className="container">
-        <button className="btn btn-primary" onClick={toggleMode}>{btnText}</button>
-        </div>
+   
         </div>
     );
     }

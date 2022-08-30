@@ -30,18 +30,18 @@ export default function TextForms(props) {
     <textarea className="form-control" id="myBox" rows="8" value={text} onChange={handleOnChange} style={{backgroundColor:props.mode==='dark'?'black':'white',
   color: props.mode==='dark'?'white':'black'}}></textarea>
     </div>
-    <button className="btn btn-primary mx-2" onClick={handleUpCase}>Convert to uppercase</button>
-    <button className="btn btn-primary mx-2" onClick={handleLowCase}>Convert to lowercase</button>
+    <button disabled={text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleUpCase}>Convert to uppercase</button>
+    <button disabled={text.length===0} className="btn btn-primary mx-2 my-1" onClick={handleLowCase}>Convert to lowercase</button>
   </div>
   
   <div className="container my-3" style={{
     color: props.mode==='dark'?'white':'black'
   }}>
     <h1>Your text summary</h1>
-    <p>{text.split(" ").length} words and {text.length} characters</p>
-    <p>{0.008 * text.split(" ").length} minutes to read</p>
+    <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} characters</p>
+    <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} minutes to read</p>
     <h2>Preview</h2>
-    <p>{text.length>0?text:"Write something in the text box above to preview it here"}</p>
+    <p>{text.length>0?text:"Nothing to preview"}</p>
   </div>
   </>
   );
